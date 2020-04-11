@@ -1,6 +1,8 @@
 exports.handler = function (event, context, callback) {
   var authorizationHeader = event.headers.Authorization
 
+  if (!authorizationHeader) authorizationHeader = event.headers.authorization
+
   if (!authorizationHeader) return callback('Unauthorized')
 
   var encodedCreds = authorizationHeader.split(' ')[1]
